@@ -3,47 +3,91 @@
 
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
 </head>
 
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
+
+
 <body>
-    <div class="player">
-        <div class="main">
-            <audio></audio>
-            <div class="thumbnail">
-                <img src="">
-            </div>
-            <div class="seekbar">
-                <input type="range">
-            </div>
-            <div class="details">
-                <h2></h2>
-                <p></p>
-            </div>
-            <div class="controls">
-                <div class="prev-control">
-                    <i class="fa fa-backward"></i>
-                </div>
-                <div class="play-pause-control paused">
-                    <i class="fa fa-play"></i>
-                    <i class="fa fa-pause"></i>
-                </div>
-                <div class="next-control">
-                    <i class="fa fa-forward"></i>
-                </div>
-            </div>
-        </div>
-        <div class="player-list">
-            <div class="toggle-list">
-                <i class="fa fa-angle-up"></i>
-                <i class="fa fa-angle-down"></i>
-            </div>
-            <div class="list">
-            </div>
-        </div>
+
+    <h1>the HTML audio player</h1>
+
+    <audio controls="controls" loop id="audio">
+     <source id="audioSource" src="/music/aqua bgm.mp3 " type="audio/mpeg ">
+    </audio>
+    <div>
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Length</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="#" data-value="/music/aqua bgm.mp3">Minato Aqua BGM</a>
+                    </td>
+                    <td>1</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" data-value="/music/botan bgm 1.mp3">Botan BGM 1</a>
+                    </td>
+
+                    <td>1</td>
+
+
+                </tr>
+                <tr>
+
+                    <td>
+                        <a href="#" data-value="/music/botan bgm 2.mp3">Botan BGM 2</a>
+                    </td>
+                    <td>1</td>
+
+                </tr>
+                <tr>
+                    <td>Fubuki BGM</td>
+                    <td>1</td>
+
+                </tr>
+                <tr>
+                    <td>Watame BGM</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
-    <script type="text/javascript" src="code.js"></script>
+
+
+    <script>
+        list.onclick = function(e) {
+            e.preventDefault();
+
+            var elm = e.target;
+            var audio = document.getElementById('audio');
+
+            var source = document.getElementById('audioSource');
+            source.src = elm.getAttribute('data-value');
+
+            audio.load(); //call this to just preload the audio without playing
+            audio.play(); //call this to play the song right away
+        };
+    </script>
 </body>
 
 </html>
